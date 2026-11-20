@@ -1,10 +1,10 @@
-# FANTASTIC VISUALS — Cinematic Static Web Portfolio
+# FANTASTIC VISUALS — Cinematic Static Web Portfolio & Studio CMS
 
 A high-performance, dark cinematic web portfolio engineered for **Fantastic Visuals** (Commercial Video Production & High-Profile Event Coverage).
 
 Combines the **dark atmospheric aesthetic of Unseen Studio** (`#070707` obsidian canvas, subtle grain, ambient lighting, video-first cards) with the **rock-solid grid architecture of Locomotive** (staggered responsive columns, Lenis smooth scrolling, modular components).
 
-Optimized for **instant, zero-config deployment on Vercel** or any static host.
+Includes a built-in **Studio Content Manager GUI** (`admin.html`) for you and your team to visually add/edit projects, verify Google Drive links with live previews, and 1-click publish to Vercel.
 
 ---
 
@@ -13,12 +13,13 @@ Optimized for **instant, zero-config deployment on Vercel** or any static host.
 ```
 FANTASTIC-VISUALS-WEB/
 ├── index.html                   <-- Master landing page
+├── admin.html                   <-- Built-in visual Studio Content Manager GUI
 ├── vercel.json                  <-- Vercel caching & routing headers
 ├── assets/
 │   ├── css/
 │   │   └── style.css            <-- Custom styling, film grain, ambient glow, scrollbars
 │   ├── js/
-│   │   ├── projects-data.js     <-- Add / edit your projects and Google Drive links here!
+│   │   ├── projects-data.js     <-- Single source of truth for all projects & links
 │   │   └── main.js              <-- Lenis scroll, hover video loops, modal & lightbox
 │   └── images/
 │       └── favicon.svg          <-- Studio favicon
@@ -27,52 +28,37 @@ FANTASTIC-VISUALS-WEB/
 
 ---
 
-## ⚡ How to Add or Update Projects
+## 🎨 Studio Content Manager GUI (`admin.html`)
 
-You **never need to touch messy HTML**! Open [assets/js/projects-data.js](file:///c:/Users/Darren%20Wibisono/Documents/3.%20DOCUMENTS/FANTASTIC-VISUALS-WEB/assets/js/projects-data.js) and simply edit the projects array:
+Instead of editing code files by hand, you and your team can simply open **[admin.html](file:///c:/Users/Darren%20Wibisono/Documents/3.%20DOCUMENTS/FANTASTIC-VISUALS-WEB/admin.html)** in any browser:
 
-```javascript
-{
-    title: "Neon Horizon Music Festival 2024",
-    category: "Event Coverage & Official Aftermovie",
-    badge: "AFTERMOVIE • 2024",
-    year: "2024",
-    desc: "Full 3-day festival documentation with a 6-camera crew...",
-    // High-res photo cover:
-    thumbnail: "https://images.unsplash.com/photo-...",
-    // 5-second teaser video loop on hover:
-    videoUrl: "https://assets.mixkit.co/videos/preview/...",
-    // Google Drive Deliverable Vault Link:
-    driveVaultUrl: "https://drive.google.com/drive/folders/YOUR_FOLDER_ID"
-}
-```
-
-### 🔒 Pro-tip for Google Drive Photos (Zero Google Branding):
-If you have a photo stored on Google Drive (set to "Anyone with link can view"):
-```javascript
-thumbnail: driveImage("1aBcDeFgHiJkLmNoP123456789")
-```
-It automatically converts to Google's direct CDN (`https://lh3.googleusercontent.com/d/{ID}`) which renders instantly with zero Google Drive UI!
+### Features:
+1. **Visual Project Editor:**
+   * Add, edit, or delete projects with friendly form fields.
+   * Re-order cards with Up/Down buttons (changes card order on the live website).
+2. **Live Google Drive Link Checker:**
+   * Paste any Google Drive link or ID for thumbnails — it instantly checks and displays the live image preview.
+   * Paste your client deliverable Drive folder link with one-click test button.
+3. **Event Stills (Photos) Manager:**
+   * Add or delete event photography proofing stills.
+4. **Studio Contact Settings:**
+   * Change WhatsApp number, studio email, and social links in seconds.
+5. **Two Easy Ways to Save:**
+   * **Option A (1-Click GitHub Direct Sync):** Add your GitHub Personal Access Token once; clicking **"Publish to Live Site"** automatically commits to your repo, prompting Vercel to redeploy within 5 seconds!
+   * **Option B (Instant Download):** Click **"Export Data"** -> **"Download projects-data.js"** and replace the file.
 
 ---
 
-## 🚀 How to Deploy on Vercel (Takes 60 Seconds)
+## 🚀 How to Deploy on Vercel
 
 ### Method A: Via GitHub (Recommended)
-1. Push this folder to a GitHub repository.
-2. Go to [vercel.com](https://vercel.com) and click **"Add New Project"**.
-3. Select your repository and click **Deploy**.
-4. Done! Vercel will deploy it in under 5 seconds with automatic SSL and a global CDN.
-
-### Method B: Via Vercel CLI
-In your VS Code terminal:
-```bash
-npx vercel
-```
-Follow the 3 prompts and your site is live immediately!
+1. Push this folder to your GitHub repository.
+2. In [Vercel](https://vercel.com), click **"Add New Project"** and select the repository.
+3. Click **Deploy**.
+4. Done! Vercel serves it globally on a lightning-fast CDN with zero server costs.
 
 ---
 
 ## 🖥️ Local Preview
-* Simply double-click [index.html](file:///c:/Users/Darren%20Wibisono/Documents/3.%20DOCUMENTS/FANTASTIC-VISUALS-WEB/index.html) to open in your browser.
-* Or use VS Code's **Live Server** extension.
+* **Public Site:** Double-click [index.html](file:///c:/Users/Darren%20Wibisono/Documents/3.%20DOCUMENTS/FANTASTIC-VISUALS-WEB/index.html) to open in your browser.
+* **Studio Admin CMS:** Double-click [admin.html](file:///c:/Users/Darren%20Wibisono/Documents/3.%20DOCUMENTS/FANTASTIC-VISUALS-WEB/admin.html) to manage your portfolio content.

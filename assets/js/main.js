@@ -3,23 +3,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize Smooth Scroll (Lenis) with mobile touch optimizations
     const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        smoothWheel: true,
-        smoothTouch: false, // Keep native buttery-smooth touch inertia on mobile
-    });
 
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // 2. Cursor Ambient Glow Follower (Only active on fine pointer devices)
+    // 1. Cursor Ambient Glow Follower (Only active on fine pointer devices)
     const ambient = document.getElementById('ambient');
     if (ambient && !isTouch) {
         window.addEventListener('mousemove', (e) => {

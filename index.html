@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>FANTASTIC VISUALS — Commercial Video Production & Event Coverage</title>
     
     <!-- Favicon -->
@@ -53,46 +53,79 @@
     <!-- Mouse Ambient Glow Follower -->
     <div id="ambient" class="fixed inset-0 pointer-events-none z-0 ambient-glow transition-all duration-300"></div>
 
-    <!-- 01. NAVIGATION (Locomotive Minimal Floating Bar) -->
-    <header class="fixed top-0 left-0 right-0 z-40 px-6 py-5 md:px-12 backdrop-blur-xl bg-obsidian/75 border-b border-white/[0.06] transition-all duration-500">
+    <!-- 01. NAVIGATION (Locomotive Minimal Floating Bar + Mobile Drawer) -->
+    <header class="fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 md:px-12 py-4 sm:py-5 backdrop-blur-xl bg-obsidian/80 border-b border-white/[0.06] transition-all duration-500">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <!-- Brand Mark -->
-            <a href="#" class="group flex items-center space-x-3">
-                <div class="w-3 h-3 bg-white rounded-full transition-transform duration-300 group-hover:scale-150"></div>
-                <span class="font-syne font-bold text-lg md:text-xl tracking-wider text-white">FANTASTIC <span class="text-zinc-500 font-normal">VISUALS</span></span>
+            <a href="#" class="group flex items-center space-x-2.5 sm:space-x-3">
+                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-full transition-transform duration-300 group-hover:scale-150"></div>
+                <span class="font-syne font-bold text-base sm:text-lg md:text-xl tracking-wider text-white">FANTASTIC <span class="text-zinc-500 font-normal">VISUALS</span></span>
             </a>
 
-            <!-- Center Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-8 font-mono text-xs uppercase tracking-wider text-zinc-400">
+            <!-- Desktop Center Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 font-mono text-xs uppercase tracking-wider text-zinc-400">
                 <a href="#work" class="hover:text-white transition-colors duration-200">Selected Work</a>
                 <a href="#stills" class="hover:text-white transition-colors duration-200">Event Stills</a>
                 <a href="#services" class="hover:text-white transition-colors duration-200">Capabilities</a>
                 <a href="#contact" class="hover:text-white transition-colors duration-200">Contact</a>
             </nav>
 
-            <!-- CTA Button -->
-            <div class="flex items-center space-x-4">
-                <span class="hidden lg:flex items-center space-x-2 text-[11px] font-mono text-emerald-400 tracking-wider">
+            <!-- Actions (CTA + Mobile Hamburger) -->
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <span class="hidden xl:flex items-center space-x-2 text-[11px] font-mono text-emerald-400 tracking-wider">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
                     <span>BOOKING Q1/Q2</span>
                 </span>
-                <a href="#contact" class="px-5 py-2.5 rounded-full bg-white text-black font-syne font-bold text-xs uppercase tracking-wider hover:bg-zinc-200 hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)]">
-                    Inquire Now
+                <a href="#contact" class="hidden sm:inline-flex px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white text-black font-syne font-bold text-xs uppercase tracking-wider hover:bg-zinc-200 hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+                    Inquire
                 </a>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" aria-label="Toggle Navigation" class="md:hidden w-10 h-10 rounded-full border border-white/10 bg-white/[0.04] flex items-center justify-center text-white hover:bg-white/10 active:scale-95 transition-all">
+                    <i id="mobileMenuIcon" data-lucide="menu" class="w-5 h-5"></i>
+                </button>
             </div>
         </div>
     </header>
 
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="fixed inset-0 z-30 bg-obsidian/95 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-10 pt-24 pb-12 transition-all duration-300 transform -translate-y-full opacity-0 pointer-events-none md:hidden">
+        <div class="space-y-6 pt-6">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-zinc-500">[ MENU ]</span>
+            <nav class="flex flex-col space-y-5 font-syne font-extrabold text-2xl sm:text-3xl text-white">
+                <a href="#work" class="mobile-nav-link hover:text-cinema transition-colors">01 Selected Work</a>
+                <a href="#stills" class="mobile-nav-link hover:text-cinema transition-colors">02 Event Stills</a>
+                <a href="#services" class="mobile-nav-link hover:text-cinema transition-colors">03 Capabilities</a>
+                <a href="#contact" class="mobile-nav-link hover:text-cinema transition-colors">04 Contact</a>
+            </nav>
+        </div>
+
+        <div class="space-y-5 pt-6 border-t border-white/10">
+            <a href="#contact" class="mobile-nav-link w-full py-3.5 rounded-full bg-white text-black font-syne font-bold text-xs uppercase tracking-wider text-center flex items-center justify-center space-x-2">
+                <span>Book Shoot / Inquire</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <div class="flex justify-between items-center text-xs font-mono text-zinc-500 pt-2">
+                <span>JAKARTA & GLOBAL</span>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white">IG</a>
+                    <a href="#" class="hover:text-white">YT</a>
+                    <a href="#" class="hover:text-white">DRIVE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 02. HERO SECTION (Unseen Dark Cinematic Atmosphere) -->
-    <section class="relative min-h-screen pt-36 pb-20 px-6 md:px-12 flex flex-col justify-between max-w-7xl mx-auto z-10">
-        <div class="space-y-6 max-w-4xl">
-            <div class="inline-flex items-center space-x-3 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-zinc-400">
+    <section class="relative min-h-[90vh] sm:min-h-screen pt-28 sm:pt-36 pb-16 sm:pb-20 px-4 sm:px-6 md:px-12 flex flex-col justify-between max-w-7xl mx-auto z-10">
+        <div class="space-y-4 sm:space-y-6 max-w-4xl">
+            <div class="inline-flex items-center space-x-2 sm:space-x-3 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-[10px] sm:text-xs font-mono text-zinc-400">
                 <span class="text-white font-bold">FV / 2024</span>
                 <span class="text-zinc-600">|</span>
-                <span>COMMERCIAL VIDEO & HIGH-PROFILE EVENT DOCUMENTARY</span>
+                <span class="truncate">COMMERCIAL VIDEO & EVENT DOCUMENTARY</span>
             </div>
 
-            <h1 class="font-syne font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white leading-[0.95]">
+            <h1 class="font-syne font-extrabold text-3xl sm:text-5xl md:text-7xl lg:text-8xl tracking-tight text-white leading-[1.0] sm:leading-[0.95]">
                 WE SHAPE <br>
                 <span class="text-zinc-500 hover:text-white transition-colors duration-500 cursor-default">CINEMATIC REALITY</span> <br>
                 FOR THE BOLD.
@@ -100,8 +133,8 @@
         </div>
 
         <!-- Hero Reel Video Banner (Interactive Teaser) -->
-        <div class="relative mt-12 w-full rounded-2xl overflow-hidden border border-white/10 bg-surface shadow-2xl group cursor-pointer" onclick="openHeroReel()">
-            <div class="relative aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden">
+        <div class="relative mt-8 sm:mt-12 w-full rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 bg-surface shadow-2xl group cursor-pointer" onclick="openHeroReel()">
+            <div class="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden">
                 <video id="heroVideo" autoplay loop muted playsinline class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 brightness-90 group-hover:brightness-100">
                     <source src="" type="video/mp4">
                 </video>
@@ -110,127 +143,127 @@
 
                 <!-- Center Floating Play Trigger -->
                 <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all duration-300 shadow-2xl">
-                        <i data-lucide="play" class="w-6 h-6 md:w-7 md:h-7 fill-current ml-1"></i>
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all duration-300 shadow-2xl">
+                        <i data-lucide="play" class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 fill-current ml-0.5 sm:ml-1"></i>
                     </div>
                 </div>
 
                 <!-- Bottom Banner Info -->
-                <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                <div class="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4">
                     <div>
-                        <span class="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">2024 Flagship Showreel</span>
-                        <p class="font-syne text-lg md:text-xl font-bold text-white">Fantastic Visuals — The Motion Anthology</p>
+                        <span class="text-[9px] sm:text-[10px] font-mono tracking-widest text-zinc-400 uppercase">2024 Flagship Showreel</span>
+                        <p class="font-syne text-sm sm:text-lg md:text-xl font-bold text-white leading-tight">Fantastic Visuals — The Motion Anthology</p>
                     </div>
-                    <div class="flex items-center space-x-3 text-xs font-mono text-zinc-300">
+                    <div class="flex items-center space-x-2 sm:space-x-3 text-[10px] sm:text-xs font-mono text-zinc-300">
                         <span class="hidden sm:inline-block px-3 py-1 rounded bg-black/60 backdrop-blur border border-white/10">4K DCI • 60 FPS</span>
-                        <span class="px-3 py-1 rounded bg-white text-black font-bold">CLICK TO EXPAND</span>
+                        <span class="px-2.5 py-1 rounded bg-white text-black font-bold">CLICK TO EXPAND</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Bottom Stats Row (Locomotive style) -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-white/[0.06] mt-12 text-zinc-400 font-mono text-xs">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-8 sm:pt-12 border-t border-white/[0.06] mt-8 sm:mt-12 text-zinc-400 font-mono text-[10px] sm:text-xs">
             <div>
-                <span class="text-zinc-600 block mb-1">01 / CAPABILITIES</span>
+                <span class="text-zinc-600 block mb-0.5 sm:mb-1">01 / CAPABILITIES</span>
                 <span class="text-white font-medium">Video Production & Stills</span>
             </div>
             <div>
-                <span class="text-zinc-600 block mb-1">02 / COVERAGE</span>
+                <span class="text-zinc-600 block mb-0.5 sm:mb-1">02 / COVERAGE</span>
                 <span class="text-white font-medium">Festivals, Corporate, Luxury</span>
             </div>
             <div>
-                <span class="text-zinc-600 block mb-1">03 / WORKFLOW</span>
+                <span class="text-zinc-600 block mb-0.5 sm:mb-1">03 / WORKFLOW</span>
                 <span class="text-white font-medium">Cinema Raw & Cloud Vaults</span>
             </div>
             <div>
-                <span class="text-zinc-600 block mb-1">04 / LOCATION</span>
+                <span class="text-zinc-600 block mb-0.5 sm:mb-1">04 / LOCATION</span>
                 <span class="text-white font-medium">Jakarta & Worldwide</span>
             </div>
         </div>
     </section>
 
     <!-- 03. SELECTED WORK (Locomotive Staggered Grid + Google Drive Curated Teaser) -->
-    <section id="work" class="py-24 px-6 md:px-12 max-w-7xl mx-auto z-10 relative">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-white/[0.06] pb-8">
+    <section id="work" class="py-16 sm:py-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto z-10 relative">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 border-b border-white/[0.06] pb-6 sm:pb-8">
             <div>
-                <span class="font-mono text-xs text-zinc-500 uppercase tracking-widest">[ ARCHIVE : 2023 - 2024 ]</span>
-                <h2 class="font-syne font-extrabold text-3xl md:text-5xl text-white mt-2">SELECTED PRODUCTIONS</h2>
+                <span class="font-mono text-[10px] sm:text-xs text-zinc-500 uppercase tracking-widest">[ ARCHIVE : 2023 - 2024 ]</span>
+                <h2 class="font-syne font-extrabold text-2xl sm:text-3xl md:text-5xl text-white mt-1 sm:mt-2">SELECTED PRODUCTIONS</h2>
             </div>
-            <p class="mt-4 md:mt-0 font-mono text-xs text-zinc-400 max-w-xs text-left md:text-right">
-                Hover to trigger teaser loop. Click to watch master cut and access verified Google Drive client vault.
+            <p class="mt-3 md:mt-0 font-mono text-[10px] sm:text-xs text-zinc-400 max-w-xs text-left md:text-right">
+                Hover or scroll to trigger teaser loop. Click to watch master cut and access verified Google Drive client vault.
             </p>
         </div>
 
         <!-- Dynamic Staggered Projects Grid rendered from projects-data.js -->
-        <div id="projectsContainer" class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12"></div>
+        <div id="projectsContainer" class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 lg:gap-12"></div>
     </section>
 
     <!-- 04. EVENT STILLS & PROOFS (High-Res Photo Gallery from Direct Drive/CDN) -->
-    <section id="stills" class="py-24 px-6 md:px-12 max-w-7xl mx-auto z-10 relative border-t border-white/[0.06]">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+    <section id="stills" class="py-16 sm:py-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto z-10 relative border-t border-white/[0.06]">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12">
             <div>
-                <span class="font-mono text-xs text-zinc-500 uppercase tracking-widest">[ CAPTURED MOMENTS ]</span>
-                <h2 class="font-syne font-extrabold text-3xl md:text-5xl text-white mt-2">EVENT STILLS & PROOFING</h2>
+                <span class="font-mono text-[10px] sm:text-xs text-zinc-500 uppercase tracking-widest">[ CAPTURED MOMENTS ]</span>
+                <h2 class="font-syne font-extrabold text-2xl sm:text-3xl md:text-5xl text-white mt-1 sm:mt-2">EVENT STILLS & PROOFING</h2>
             </div>
-            <p class="font-mono text-xs text-zinc-400 max-w-sm mt-4 md:mt-0">
+            <p class="font-mono text-[10px] sm:text-xs text-zinc-400 max-w-sm mt-3 md:mt-0">
                 High-resolution event photography delivered directly through seamless Google Drive CDN endpoints.
             </p>
         </div>
 
         <!-- Dynamic Stills Grid rendered from projects-data.js -->
-        <div id="stillsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div id="stillsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
     </section>
 
     <!-- 05. CAPABILITIES / SERVICES (Locomotive Structured Accordion/Grid) -->
-    <section id="services" class="py-24 px-6 md:px-12 max-w-7xl mx-auto z-10 relative border-t border-white/[0.06]">
-        <div class="mb-16">
-            <span class="font-mono text-xs text-zinc-500 uppercase tracking-widest">[ WHAT WE DO ]</span>
-            <h2 class="font-syne font-extrabold text-3xl md:text-5xl text-white mt-2">TECHNICAL CAPABILITIES</h2>
+    <section id="services" class="py-16 sm:py-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto z-10 relative border-t border-white/[0.06]">
+        <div class="mb-10 sm:mb-16">
+            <span class="font-mono text-[10px] sm:text-xs text-zinc-500 uppercase tracking-widest">[ WHAT WE DO ]</span>
+            <h2 class="font-syne font-extrabold text-2xl sm:text-3xl md:text-5xl text-white mt-1 sm:mt-2">TECHNICAL CAPABILITIES</h2>
         </div>
 
         <div class="divide-y divide-white/[0.08]">
-            <div class="py-8 group flex flex-col md:flex-row md:items-center justify-between hover:bg-white/[0.02] px-4 -mx-4 rounded-xl transition-colors">
-                <div class="flex items-start space-x-6">
-                    <span class="font-mono text-sm text-zinc-600">01</span>
+            <div class="py-6 sm:py-8 group flex flex-col md:flex-row md:items-start lg:items-center justify-between hover:bg-white/[0.02] px-2 sm:px-4 -mx-2 sm:-mx-4 rounded-xl transition-colors gap-3 md:gap-6">
+                <div class="flex items-start space-x-4 sm:space-x-6">
+                    <span class="font-mono text-xs sm:text-sm text-zinc-600 mt-1">01</span>
                     <div>
-                        <h3 class="font-syne font-bold text-2xl md:text-3xl text-white group-hover:text-cinema transition-colors">Commercial Video Production</h3>
-                        <p class="font-inter text-sm text-zinc-400 mt-2 max-w-xl">
+                        <h3 class="font-syne font-bold text-xl sm:text-2xl md:text-3xl text-white group-hover:text-cinema transition-colors">Commercial Video Production</h3>
+                        <p class="font-inter text-xs sm:text-sm text-zinc-400 mt-2 max-w-xl">
                             High-impact brand films, promotional teasers, social media first deliverables, and commercial adverts shot on cinema rigs with industry-grade color science.
                         </p>
                     </div>
                 </div>
-                <div class="mt-4 md:mt-0 font-mono text-xs text-zinc-500 uppercase tracking-wider">
+                <div class="font-mono text-[10px] sm:text-xs text-zinc-500 uppercase tracking-wider pl-8 sm:pl-0 flex-shrink-0">
                     RED / ARRI WORKFLOW • SOUND DESIGN
                 </div>
             </div>
 
-            <div class="py-8 group flex flex-col md:flex-row md:items-center justify-between hover:bg-white/[0.02] px-4 -mx-4 rounded-xl transition-colors">
-                <div class="flex items-start space-x-6">
-                    <span class="font-mono text-sm text-zinc-600">02</span>
+            <div class="py-6 sm:py-8 group flex flex-col md:flex-row md:items-start lg:items-center justify-between hover:bg-white/[0.02] px-2 sm:px-4 -mx-2 sm:-mx-4 rounded-xl transition-colors gap-3 md:gap-6">
+                <div class="flex items-start space-x-4 sm:space-x-6">
+                    <span class="font-mono text-xs sm:text-sm text-zinc-600 mt-1">02</span>
                     <div>
-                        <h3 class="font-syne font-bold text-2xl md:text-3xl text-white group-hover:text-cinema transition-colors">Event Photo & Video Coverage</h3>
-                        <p class="font-inter text-sm text-zinc-400 mt-2 max-w-xl">
+                        <h3 class="font-syne font-bold text-xl sm:text-2xl md:text-3xl text-white group-hover:text-cinema transition-colors">Event Photo & Video Coverage</h3>
+                        <p class="font-inter text-xs sm:text-sm text-zinc-400 mt-2 max-w-xl">
                             Comprehensive multicam documentation for festivals, corporate summits, nightlife, and product launches. Same-day social recap edits available.
                         </p>
                     </div>
                 </div>
-                <div class="mt-4 md:mt-0 font-mono text-xs text-zinc-500 uppercase tracking-wider">
+                <div class="font-mono text-[10px] sm:text-xs text-zinc-500 uppercase tracking-wider pl-8 sm:pl-0 flex-shrink-0">
                     MULTICAM • SAME-DAY REELS • DRONE FPV
                 </div>
             </div>
 
-            <div class="py-8 group flex flex-col md:flex-row md:items-center justify-between hover:bg-white/[0.02] px-4 -mx-4 rounded-xl transition-colors">
-                <div class="flex items-start space-x-6">
-                    <span class="font-mono text-sm text-zinc-600">03</span>
+            <div class="py-6 sm:py-8 group flex flex-col md:flex-row md:items-start lg:items-center justify-between hover:bg-white/[0.02] px-2 sm:px-4 -mx-2 sm:-mx-4 rounded-xl transition-colors gap-3 md:gap-6">
+                <div class="flex items-start space-x-4 sm:space-x-6">
+                    <span class="font-mono text-xs sm:text-sm text-zinc-600 mt-1">03</span>
                     <div>
-                        <h3 class="font-syne font-bold text-2xl md:text-3xl text-white group-hover:text-cinema transition-colors">Client Vaults & Cloud Delivery</h3>
-                        <p class="font-inter text-sm text-zinc-400 mt-2 max-w-xl">
+                        <h3 class="font-syne font-bold text-xl sm:text-2xl md:text-3xl text-white group-hover:text-cinema transition-colors">Client Vaults & Cloud Delivery</h3>
+                        <p class="font-inter text-xs sm:text-sm text-zinc-400 mt-2 max-w-xl">
                             Secure, high-bandwidth deliverable distribution via Google Drive business architecture with custom unbranded presentation interfaces for your team.
                         </p>
                     </div>
                 </div>
-                <div class="mt-4 md:mt-0 font-mono text-xs text-zinc-500 uppercase tracking-wider">
+                <div class="font-mono text-[10px] sm:text-xs text-zinc-500 uppercase tracking-wider pl-8 sm:pl-0 flex-shrink-0">
                     4K PRORES • RAW ARCHIVE • ZERO-UI CLOUD
                 </div>
             </div>
@@ -238,29 +271,29 @@
     </section>
 
     <!-- 06. FOOTER / CONTACT CTA (Unseen Massive Headline + Direct Links) -->
-    <footer id="contact" class="pt-24 pb-12 px-6 md:px-12 max-w-7xl mx-auto z-10 relative border-t border-white/[0.06]">
-        <div class="mb-20">
-            <span class="font-mono text-xs text-zinc-500 uppercase tracking-widest">[ READY TO WORK? ]</span>
-            <h2 class="font-syne font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight mt-4 hover:text-zinc-400 transition-colors cursor-pointer" onclick="window.location.href='mailto:contact@fantasticvisuals.com'">
+    <footer id="contact" class="pt-16 sm:pt-24 pb-12 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto z-10 relative border-t border-white/[0.06]">
+        <div class="mb-14 sm:mb-20">
+            <span class="font-mono text-[10px] sm:text-xs text-zinc-500 uppercase tracking-widest">[ READY TO WORK? ]</span>
+            <h2 class="font-syne font-extrabold text-3xl sm:text-5xl md:text-7xl lg:text-8xl text-white tracking-tight mt-3 sm:mt-4 hover:text-zinc-400 transition-colors cursor-pointer" onclick="window.location.href='mailto:contact@fantasticvisuals.com'">
                 LET'S MAKE IT <br>
                 <span class="text-cinema underline decoration-white/20 underline-offset-8">FANTASTIC.</span>
             </h2>
 
-            <div class="mt-10 flex flex-wrap gap-4 items-center">
-                <a href="mailto:contact@fantasticvisuals.com" class="px-6 py-3 rounded-full bg-white text-black font-syne font-bold text-sm uppercase tracking-wider hover:bg-zinc-200 transition-transform active:scale-95 flex items-center space-x-2">
+            <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
+                <a href="mailto:contact@fantasticvisuals.com" class="px-5 sm:px-6 py-3 rounded-full bg-white text-black font-syne font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-zinc-200 transition-transform active:scale-95 flex items-center justify-center space-x-2 text-center">
                     <i data-lucide="mail" class="w-4 h-4"></i>
                     <span>contact@fantasticvisuals.com</span>
                 </a>
-                <a href="https://wa.me/" target="_blank" class="px-6 py-3 rounded-full border border-white/20 text-white font-syne font-bold text-sm uppercase tracking-wider hover:bg-white/10 transition-colors flex items-center space-x-2">
+                <a href="https://wa.me/" target="_blank" class="px-5 sm:px-6 py-3 rounded-full border border-white/20 text-white font-syne font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-white/10 transition-colors flex items-center justify-center space-x-2 text-center">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
                     <span>WhatsApp Shoot Booking</span>
                 </a>
             </div>
         </div>
 
-        <div class="flex flex-col sm:flex-row items-center justify-between border-t border-white/[0.06] pt-8 font-mono text-xs text-zinc-500">
+        <div class="flex flex-col sm:flex-row items-center justify-between border-t border-white/[0.06] pt-6 sm:pt-8 font-mono text-[10px] sm:text-xs text-zinc-500 gap-4 sm:gap-0">
             <div>© 2024 FANTASTIC VISUALS. ALL RIGHTS RESERVED.</div>
-            <div class="flex space-x-6 mt-4 sm:mt-0">
+            <div class="flex flex-wrap justify-center gap-4 sm:space-x-6">
                 <a href="#" class="hover:text-white transition-colors">INSTAGRAM</a>
                 <a href="#" class="hover:text-white transition-colors">YOUTUBE</a>
                 <a href="#" class="hover:text-white transition-colors">VIMEO</a>
@@ -274,32 +307,33 @@
     <!-- ======================================================== -->
 
     <!-- CINEMATIC VIDEO & GOOGLE DRIVE VAULT MODAL -->
-    <div id="projectModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex items-center justify-center p-4 md:p-8 transition-opacity duration-300">
-        <button onclick="closeProjectModal()" class="absolute top-6 right-6 z-50 w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all">
-            <i data-lucide="x" class="w-6 h-6"></i>
+    <div id="projectModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex items-center justify-center p-3 sm:p-6 md:p-8 transition-opacity duration-300">
+        <!-- Close Button (Positioned cleanly for phone taps) -->
+        <button onclick="closeProjectModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all">
+            <i data-lucide="x" class="w-5 h-5 sm:w-6 sm:h-6"></i>
         </button>
 
-        <div class="max-w-5xl w-full bg-surface border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+        <div class="max-w-5xl w-full bg-surface border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
             <!-- Player Wrapper (16:9) -->
-            <div class="relative aspect-video w-full bg-black">
+            <div class="relative aspect-video w-full bg-black flex-shrink-0">
                 <video id="modalVideoPlayer" controls playsinline class="w-full h-full object-contain">
                     <source src="" type="video/mp4">
                 </video>
             </div>
 
             <!-- Project Details & Google Drive Vault Gateway -->
-            <div class="p-6 md:p-8 bg-surface-light border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6 overflow-y-auto">
+            <div class="p-5 sm:p-6 md:p-8 bg-surface-light border-t border-white/10 flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6 overflow-y-auto">
                 <div class="space-y-2">
-                    <div class="flex items-center space-x-3">
-                        <span id="modalCategory" class="px-3 py-1 rounded bg-white/10 text-xs font-mono text-zinc-300 uppercase">Category</span>
-                        <span id="modalYear" class="text-xs font-mono text-zinc-500">2024</span>
+                    <div class="flex items-center space-x-2.5">
+                        <span id="modalCategory" class="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded bg-white/10 text-[10px] sm:text-xs font-mono text-zinc-300 uppercase">Category</span>
+                        <span id="modalYear" class="text-[10px] sm:text-xs font-mono text-zinc-500">2024</span>
                     </div>
-                    <h3 id="modalTitle" class="font-syne font-bold text-2xl md:text-3xl text-white">Project Title</h3>
-                    <p id="modalDesc" class="text-sm font-inter text-zinc-400 max-w-xl">Description of the shoot, gear used, and deliverables produced.</p>
+                    <h3 id="modalTitle" class="font-syne font-bold text-xl sm:text-2xl md:text-3xl text-white">Project Title</h3>
+                    <p id="modalDesc" class="text-xs sm:text-sm font-inter text-zinc-400 max-w-xl">Description of the shoot, gear used, and deliverables produced.</p>
                 </div>
 
                 <!-- Google Drive Vault Action Card (Zero Drive UI, 100% Bespoke Studio) -->
-                <div class="bg-obsidian border border-white/10 rounded-xl p-5 min-w-[280px] flex flex-col space-y-3">
+                <div class="bg-obsidian border border-white/10 rounded-xl p-4 sm:p-5 w-full lg:w-auto lg:min-w-[280px] flex flex-col space-y-2.5 sm:space-y-3">
                     <div class="flex items-center justify-between">
                         <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest flex items-center space-x-1.5">
                             <span class="w-1.5 h-1.5 rounded-full bg-cinema"></span>
@@ -313,22 +347,22 @@
                         <span>Access Google Drive Vault</span>
                     </a>
 
-                    <span class="text-[10px] font-mono text-zinc-500 text-center block">Includes 4K Master ProRes & Hi-Res RAW Stills</span>
+                    <span class="text-[9px] sm:text-[10px] font-mono text-zinc-500 text-center block">Includes 4K Master ProRes & Hi-Res RAW Stills</span>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- PHOTO LIGHTBOX MODAL -->
-    <div id="imageLightbox" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex items-center justify-center p-4" onclick="closeImageLightbox()">
-        <button class="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all">
-            <i data-lucide="x" class="w-6 h-6"></i>
+    <div id="imageLightbox" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex items-center justify-center p-3 sm:p-4" onclick="closeImageLightbox()">
+        <button class="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all">
+            <i data-lucide="x" class="w-5 h-5 sm:w-6 sm:h-6"></i>
         </button>
-        <div class="max-w-4xl max-h-[85vh] flex flex-col items-center">
-            <img id="lightboxImg" src="" alt="Proof Preview" class="max-h-[75vh] w-auto rounded-lg border border-white/15 object-contain shadow-2xl">
-            <div class="mt-4 text-center">
-                <h4 id="lightboxTitle" class="font-syne font-bold text-lg text-white">Title</h4>
-                <p id="lightboxMeta" class="font-mono text-xs text-zinc-400">Metadata</p>
+        <div class="max-w-4xl max-h-[85vh] w-full flex flex-col items-center">
+            <img id="lightboxImg" src="" alt="Proof Preview" class="max-h-[65vh] sm:max-h-[75vh] w-auto max-w-full rounded-lg border border-white/15 object-contain shadow-2xl">
+            <div class="mt-3 sm:mt-4 text-center px-4">
+                <h4 id="lightboxTitle" class="font-syne font-bold text-base sm:text-lg text-white">Title</h4>
+                <p id="lightboxMeta" class="font-mono text-[10px] sm:text-xs text-zinc-400">Metadata</p>
             </div>
         </div>
     </div>

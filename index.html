@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FANTASTIC VISUALS — Commercial Video Production & Event Coverage</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+    <!-- Google Fonts: Syne (Headings), Inter (Body), Space Mono (Meta/Tags) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (Fast, responsive styling) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#070707',
+                        surface: '#111111',
+                        'surface-light': '#181818',
+                        accent: '#E6E6E6',
+                        cinema: '#FFB800',
+                    },
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                        mono: ['"Space Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS (Grain, Ambient Glow, Scrollbars) -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-obsidian text-zinc-300 font-inter antialiased selection:bg-white selection:text-black overflow-x-hidden">
+
+    <!-- Unseen Studio Grain Effect -->
+    <div class="fixed inset-0 z-50 film-grain pointer-events-none"></div>
+
+    <!-- Mouse Ambient Glow Follower -->
+    <div id="ambient" class="fixed inset-0 pointer-events-none z-0 ambient-glow transition-all duration-300"></div>
+
+    <!-- 01. NAVIGATION (Locomotive Minimal Floating Bar) -->
+    <header class="fixed top-0 left-0 right-0 z-40 px-6 py-5 md:px-12 backdrop-blur-xl bg-obsidian/75 border-b border-white/[0.06] transition-all duration-500">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Mark -->
+            <a href="#" class="group flex items-center space-x-3">
+                <div class="w-3 h-3 bg-white rounded-full transition-transform duration-300 group-hover:scale-150"></div>
+                <span class="font-syne font-bold text-lg md:text-xl tracking-wider text-white">FANTASTIC <span class="text-zinc-500 font-normal">VISUALS</span></span>
+            </a>
+
+            <!-- Center Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-mono text-xs uppercase tracking-wider text-zinc-400">
+                <a href="#work" class="hover:text-white transition-colors duration-200">Selected Work</a>
+                <a href="#stills" class="hover:text-white transition-colors duration-200">Event Stills</a>
+                <a href="#services" class="hover:text-white transition-colors duration-200">Capabilities</a>
+                <a href="#contact" class="hover:text-white transition-colors duration-200">Contact</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="flex items-center space-x-4">
+                <span class="hidden lg:flex items-center space-x-2 text-[11px] font-mono text-emerald-400 tracking-wider">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>BOOKING Q1/Q2</span>
+                </span>
+                <a href="#contact" class="px-5 py-2.5 rounded-full bg-white text-black font-syne font-bold text-xs uppercase tracking-wider hover:bg-zinc-200 hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+                    Inquire Now
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 02. HERO SECTION (Unseen Dark Cinematic Atmosphere) -->
+    <section class="relative min-h-screen pt-36 pb-20 px-6 md:px-12 flex flex-col justify-between max-w-7xl mx-auto z-10">
+        <div class="space-y-6 max-w-4xl">
+            <div class="inline-flex items-center space-x-3 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-zinc-400">
+                <span class="text-white font-bold">FV / 2024</span>
+                <span class="text-zinc-600">|</span>
+                <span>COMMERCIAL VIDEO & HIGH-PROFILE EVENT DOCUMENTARY</span>
+            </div>
+
+            <h1 class="font-syne font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white leading-[0.95]">
+                WE SHAPE <br>
+                <span class="text-zinc-500 hover:text-white transition-colors duration-500 cursor-default">CINEMATIC REALITY</span> <br>
+                FOR THE BOLD.
+            </h1>
+        </div>
+
+        <!-- Hero Reel Video Banner (Interactive Teaser) -->
+        <div class="relative mt-12 w-full rounded-2xl overflow-hidden border border-white/10 bg-surface shadow-2xl group cursor-pointer" onclick="openHeroReel()">
+            <div class="relative aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden">
+                <video id="heroVideo" autoplay loop muted playsinline class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 brightness-90 group-hover:brightness-100">
+                    <source src="" type="video/mp4">
+                </video>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-black/30"></div>
+
+                <!-- Center Floating Play Trigger -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all duration-300 shadow-2xl">
+                        <i data-lucide="play" class="w-6 h-6 md:w-7 md:h-7 fill-current ml-1"></i>
+                    </div>
+                </div>
+
+                <!-- Bottom Banner Info -->
+                <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                    <div>
+                        <span class="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">2024 Flagship Showreel</span>
+                        <p class="font-syne text-lg md:text-xl font-bold text-white">Fantastic Visuals — The Motion Anthology</p>
+                    </div>
+                    <div class="flex items-center space-x-3 text-xs font-mono text-zinc-300">
+                        <span class="hidden sm:inline-block px-3 py-1 rounded bg-black/60 backdrop-blur border border-white/10">4K DCI • 60 FPS</span>
+                        <span class="px-3 py-1 rounded bg-white text-black font-bold">CLICK TO EXPAND</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Stats Row (Locomotive style) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-white/[0.06] mt-12 text-zinc-400 font-mono text-xs">
+            <div>
+                <span class="text-zinc-600 block mb-1">01 / CAPABILITIES</span>
+                <span class="text-white font-medium">Video Production & Stills</span>
+            </div>
+            <div>
+                <span class="text-zinc-600 block mb-1">02 / COVERAGE</span>
+                <span class="text-white font-medium">Festivals, Corporate, Luxury</span>
+            </div>
+            <div>
+                <span class="text-zinc-600 block mb-1">03 / WORKFLOW</span>
+                <span class="text-white font-medium">Cinema Raw & Cloud Vaults</span>
+            </div>
+            <div>
+                <span class="text-zinc-600 block mb-1">04 / LOCATION</span>
+                <span class="text-white font-medium">Jakarta & Worldwide</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03. SELECTED WORK (Locomotive Staggered Grid + Google Drive Curated Teaser) -->
+    <section id="work" class="py-24 px-6 md:px-12 max-w-7xl mx-auto z-10 relative">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-white/[0.06] pb-8">
+            <div>
+                <span class="font-mono text-xs text-zinc-500 uppercase tracking-widest">[ ARCHIVE : 2023 - 2024 ]</span>
+                <h2 class="font-syne font-extrabold text-3xl md:text-5xl text-white mt-2">SELECTED PRODUCTIONS</h2>
+            </div>
+            <p class="mt-4 md:mt-0 font-mono text-xs text-zinc-400 max-w-xs text-left md:text-right">
+                Hover to trigger teaser loop. Click to watch master cut and access verified Google Drive client vault.
+            </p>
+        </div>
+
+        <!-- Dynamic Staggered Projects Grid rendered from projects-data.js -->
+        <div id="projectsContainer" class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12"></div>
+    </section>
+
+    <!-- 04. EVENT STILLS & PROOFS (High-Res Photo Gallery from Direct Drive/CDN) -->
+    <section id="stills" class="py-24 px-6 md:px-12 max-w-7xl mx-auto z-10 relative border-t border-white/[0.06]">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+                <span class="font-mono text-xs text-zinc-500 uppercase tracking-widest">[ CAPTURED MOMENTS ]</span>
+                <h2 class="font-syne font-extrabold text-3xl md:text-5xl text-white mt-2">EVENT STILLS & PROOFING</h2>
+            </div>
+            <p class="font-mono text-xs text-zinc-400 max-w-sm mt-4 md:mt-0">
+                High-resolution event photography delivered directly through seamless Google Drive CDN endpoints.
+            </p>
+        </div>
+
+        <!-- Dynamic Stills Grid rendered from projects-data.js -->
+        <div id="stillsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- 05. CAPABILITIES / SERVICES (Locomotive Structured Accordion/Grid) -->
+    <section id="services" class="py-24 px-6 md:px-12 max-w-7xl mx-auto z-10 relative border-t border-white/[0.06]">
+        <div class="mb-16">
+            <span class="font-mono text-xs text-zinc-500 uppercase tracking-widest">[ WHAT WE DO ]</span>
+            <h2 class="font-syne font-extrabold text-3xl md:text-5xl text-white mt-2">TECHNICAL CAPABILITIES</h2>
+        </div>
+
+        <div class="divide-y divide-white/[0.08]">
+            <div class="py-8 group flex flex-col md:flex-row md:items-center justify-between hover:bg-white/[0.02] px-4 -mx-4 rounded-xl transition-colors">
+                <div class="flex items-start space-x-6">
+                    <span class="font-mono text-sm text-zinc-600">01</span>
+                    <div>
+                        <h3 class="font-syne font-bold text-2xl md:text-3xl text-white group-hover:text-cinema transition-colors">Commercial Video Production</h3>
+                        <p class="font-inter text-sm text-zinc-400 mt-2 max-w-xl">
+                            High-impact brand films, promotional teasers, social media first deliverables, and commercial adverts shot on cinema rigs with industry-grade color science.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-4 md:mt-0 font-mono text-xs text-zinc-500 uppercase tracking-wider">
+                    RED / ARRI WORKFLOW • SOUND DESIGN
+                </div>
+            </div>
+
+            <div class="py-8 group flex flex-col md:flex-row md:items-center justify-between hover:bg-white/[0.02] px-4 -mx-4 rounded-xl transition-colors">
+                <div class="flex items-start space-x-6">
+                    <span class="font-mono text-sm text-zinc-600">02</span>
+                    <div>
+                        <h3 class="font-syne font-bold text-2xl md:text-3xl text-white group-hover:text-cinema transition-colors">Event Photo & Video Coverage</h3>
+                        <p class="font-inter text-sm text-zinc-400 mt-2 max-w-xl">
+                            Comprehensive multicam documentation for festivals, corporate summits, nightlife, and product launches. Same-day social recap edits available.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-4 md:mt-0 font-mono text-xs text-zinc-500 uppercase tracking-wider">
+                    MULTICAM • SAME-DAY REELS • DRONE FPV
+                </div>
+            </div>
+
+            <div class="py-8 group flex flex-col md:flex-row md:items-center justify-between hover:bg-white/[0.02] px-4 -mx-4 rounded-xl transition-colors">
+                <div class="flex items-start space-x-6">
+                    <span class="font-mono text-sm text-zinc-600">03</span>
+                    <div>
+                        <h3 class="font-syne font-bold text-2xl md:text-3xl text-white group-hover:text-cinema transition-colors">Client Vaults & Cloud Delivery</h3>
+                        <p class="font-inter text-sm text-zinc-400 mt-2 max-w-xl">
+                            Secure, high-bandwidth deliverable distribution via Google Drive business architecture with custom unbranded presentation interfaces for your team.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-4 md:mt-0 font-mono text-xs text-zinc-500 uppercase tracking-wider">
+                    4K PRORES • RAW ARCHIVE • ZERO-UI CLOUD
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 06. FOOTER / CONTACT CTA (Unseen Massive Headline + Direct Links) -->
+    <footer id="contact" class="pt-24 pb-12 px-6 md:px-12 max-w-7xl mx-auto z-10 relative border-t border-white/[0.06]">
+        <div class="mb-20">
+            <span class="font-mono text-xs text-zinc-500 uppercase tracking-widest">[ READY TO WORK? ]</span>
+            <h2 class="font-syne font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight mt-4 hover:text-zinc-400 transition-colors cursor-pointer" onclick="window.location.href='mailto:contact@fantasticvisuals.com'">
+                LET'S MAKE IT <br>
+                <span class="text-cinema underline decoration-white/20 underline-offset-8">FANTASTIC.</span>
+            </h2>
+
+            <div class="mt-10 flex flex-wrap gap-4 items-center">
+                <a href="mailto:contact@fantasticvisuals.com" class="px-6 py-3 rounded-full bg-white text-black font-syne font-bold text-sm uppercase tracking-wider hover:bg-zinc-200 transition-transform active:scale-95 flex items-center space-x-2">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                    <span>contact@fantasticvisuals.com</span>
+                </a>
+                <a href="https://wa.me/" target="_blank" class="px-6 py-3 rounded-full border border-white/20 text-white font-syne font-bold text-sm uppercase tracking-wider hover:bg-white/10 transition-colors flex items-center space-x-2">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span>WhatsApp Shoot Booking</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between border-t border-white/[0.06] pt-8 font-mono text-xs text-zinc-500">
+            <div>© 2024 FANTASTIC VISUALS. ALL RIGHTS RESERVED.</div>
+            <div class="flex space-x-6 mt-4 sm:mt-0">
+                <a href="#" class="hover:text-white transition-colors">INSTAGRAM</a>
+                <a href="#" class="hover:text-white transition-colors">YOUTUBE</a>
+                <a href="#" class="hover:text-white transition-colors">VIMEO</a>
+                <a href="#" class="hover:text-white transition-colors">DRIVE PORTAL</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================================================== -->
+    <!-- MODALS: UNSEEN THEME + GOOGLE DRIVE VAULT SYSTEM        -->
+    <!-- ======================================================== -->
+
+    <!-- CINEMATIC VIDEO & GOOGLE DRIVE VAULT MODAL -->
+    <div id="projectModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex items-center justify-center p-4 md:p-8 transition-opacity duration-300">
+        <button onclick="closeProjectModal()" class="absolute top-6 right-6 z-50 w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+
+        <div class="max-w-5xl w-full bg-surface border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+            <!-- Player Wrapper (16:9) -->
+            <div class="relative aspect-video w-full bg-black">
+                <video id="modalVideoPlayer" controls playsinline class="w-full h-full object-contain">
+                    <source src="" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- Project Details & Google Drive Vault Gateway -->
+            <div class="p-6 md:p-8 bg-surface-light border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6 overflow-y-auto">
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-3">
+                        <span id="modalCategory" class="px-3 py-1 rounded bg-white/10 text-xs font-mono text-zinc-300 uppercase">Category</span>
+                        <span id="modalYear" class="text-xs font-mono text-zinc-500">2024</span>
+                    </div>
+                    <h3 id="modalTitle" class="font-syne font-bold text-2xl md:text-3xl text-white">Project Title</h3>
+                    <p id="modalDesc" class="text-sm font-inter text-zinc-400 max-w-xl">Description of the shoot, gear used, and deliverables produced.</p>
+                </div>
+
+                <!-- Google Drive Vault Action Card (Zero Drive UI, 100% Bespoke Studio) -->
+                <div class="bg-obsidian border border-white/10 rounded-xl p-5 min-w-[280px] flex flex-col space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest flex items-center space-x-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-cinema"></span>
+                            <span>CLIENT VAULT</span>
+                        </span>
+                        <span class="text-[10px] font-mono text-emerald-400">UNRESTRICTED SPEED</span>
+                    </div>
+
+                    <a id="modalDriveBtn" href="#" target="_blank" class="w-full py-3 px-4 rounded-lg bg-cinema text-black font-syne font-bold text-xs uppercase tracking-wider hover:bg-amber-400 transition-colors flex items-center justify-center space-x-2 shadow-[0_0_15px_rgba(255,184,0,0.3)]">
+                        <i data-lucide="download-cloud" class="w-4 h-4"></i>
+                        <span>Access Google Drive Vault</span>
+                    </a>
+
+                    <span class="text-[10px] font-mono text-zinc-500 text-center block">Includes 4K Master ProRes & Hi-Res RAW Stills</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHOTO LIGHTBOX MODAL -->
+    <div id="imageLightbox" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex items-center justify-center p-4" onclick="closeImageLightbox()">
+        <button class="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+        <div class="max-w-4xl max-h-[85vh] flex flex-col items-center">
+            <img id="lightboxImg" src="" alt="Proof Preview" class="max-h-[75vh] w-auto rounded-lg border border-white/15 object-contain shadow-2xl">
+            <div class="mt-4 text-center">
+                <h4 id="lightboxTitle" class="font-syne font-bold text-lg text-white">Title</h4>
+                <p id="lightboxMeta" class="font-mono text-xs text-zinc-400">Metadata</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/projects-data.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

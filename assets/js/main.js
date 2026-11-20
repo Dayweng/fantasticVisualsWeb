@@ -59,13 +59,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Render Hero Reel Data
+    // 4. Bind Studio Info (Links, Email, WhatsApp, Socials)
+    if (portfolioData.studio) {
+        const s = portfolioData.studio;
+        const emailBtn = document.getElementById('footerEmailBtn');
+        const emailText = document.getElementById('footerEmailText');
+        const waBtn = document.getElementById('footerWhatsappBtn');
+        const ig = document.getElementById('footerInstagram');
+        const yt = document.getElementById('footerYoutube');
+        const vimeo = document.getElementById('footerVimeo');
+        const drivePortal = document.getElementById('footerDrivePortal');
+
+        if (emailBtn) emailBtn.href = `mailto:${s.email}`;
+        if (emailText) emailText.innerText = s.email;
+        if (waBtn) waBtn.href = s.whatsapp;
+        if (ig) ig.href = s.instagram;
+        if (yt) yt.href = s.youtube;
+        if (vimeo) vimeo.href = s.vimeo;
+        if (drivePortal) drivePortal.href = s.masterDrivePortal;
+    }
+
+    // 5. Render Hero Reel Data
     const heroVideo = document.getElementById('heroVideo');
     if (heroVideo && portfolioData.heroReel) {
         heroVideo.querySelector('source').src = portfolioData.heroReel.videoUrl;
     }
 
-    // 5. Render Selected Projects (Locomotive Responsive Staggered Grid)
+    // 6. Render Selected Projects (Locomotive Responsive Staggered Grid)
     const projectsContainer = document.getElementById('projectsContainer');
     if (projectsContainer && portfolioData.projects) {
         projectsContainer.innerHTML = portfolioData.projects.map((p, i) => {

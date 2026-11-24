@@ -131,6 +131,16 @@ const portfolioData = {
     },
     "projects": [
         {
+            "title": "17 August 2026 Flag & Opening Ceremony O-Week UC Surabaya",
+            "category": "Visual Production",
+            "badge": "DRIVE VAULT",
+            "year": "2026",
+            "desc": "17 August 2026 Flag Ceremony and O-Week Opening Ceremony by Universitas Ciputra Surabaya",
+            "thumbnail": "https://drive.google.com/thumbnail?id=10b9FwDLmMvUHQdDSYtcLANrYzwJhqGwy&sz=w1600",
+            "videoUrl": ".",
+            "driveVaultUrl": "https://drive.google.com/drive/folders/12gnNDcuWzuZgpKyV3y_FAdosY0vC8dIp"
+        },
+        {
             "title": "ICTIIA 2026 in Universitas Ciputra Surabaya",
             "category": "Corporate Keynote & Documentary",
             "badge": "DRIVE 4K",

@@ -21,10 +21,10 @@ export default async function handler(req, res) {
         }
 
         // 2. Read GitHub Token from Vercel Environment Variables
-        const token = process.env.GITHUB_TOKEN;
+        const token = process.env.GITHUB_TOKEN_90day || process.env.GITHUB_TOKEN;
         if (!token) {
             return res.status(500).json({ 
-                error: 'GITHUB_TOKEN is not configured on Vercel. Please add GITHUB_TOKEN in your Vercel Project Settings > Environment Variables.' 
+                error: 'GitHub token (GITHUB_TOKEN_90day or GITHUB_TOKEN) is not configured in Vercel Environment Variables.' 
             });
         }
 
@@ -66,6 +66,7 @@ export default async function handler(req, res) {
                 message: `chore: update portfolio via Studio CMS [${new Date().toLocaleTimeString()}]`,
                 content: contentBase64,
                 sha: sha,
+                branch: 'main',
                 committer: {
                     name: 'Fantastic Visuals Studio',
                     email: 'contact@fantasticvisuals.com'

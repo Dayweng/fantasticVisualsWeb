@@ -1008,9 +1008,13 @@ const portfolioData = ${JSON.stringify(localData, null, 4)};
                     lucide.createIcons();
                     return;
                 } else if (apiRes.status !== 404 && apiRes.status !== 405) {
-                    // If the endpoint exists but returned a specific error (e.g. token not configured in Vercel)
+                    // If the endpoint exists but returned a specific error
                     const errData = await apiRes.json().catch(() => ({}));
-                    console.warn("Vercel /api/publish error:", errData);
+                    alert("⚠️ Publishing Notice: " + (errData.error || "Could not complete GitHub publish. Check your Vercel deployment status."));
+                    btn.disabled = false;
+                    btn.innerHTML = originalHTML;
+                    lucide.createIcons();
+                    return;
                 }
             } catch (err) {
                 // Expected when testing locally or running as file://

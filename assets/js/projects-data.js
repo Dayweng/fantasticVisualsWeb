@@ -147,8 +147,8 @@ const portfolioData = {
     studio: {
         name: "Fantastic Visuals",
         tagline: "WE SHAPE CINEMATIC REALITY FOR THE BOLD.",
-        email: "contact@fantasticvisuals.com",
-        whatsapp: "https://wa.me/6281234567890?text=Hi%20Fantastic%20Visuals,%20I'd%20like%20to%20inquire%20about%20a%20shoot",
+        email: "darrenwibisono47+work@gmail.com",
+        whatsapp: "https://wa.me/6282232198614?text=Hi%20Fantastic%20Visuals,%20I'd%20like%20to%20inquire%20about%20a%20shoot.",
         instagram: "https://instagram.com/",
         youtube: "https://youtube.com/",
         vimeo: "https://vimeo.com/",

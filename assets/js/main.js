@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const vimeo = document.getElementById('footerVimeo');
         const drivePortal = document.getElementById('footerDrivePortal');
 
-        if (emailBtn) emailBtn.href = `mailto:${s.email}`;
+        if (emailBtn) emailBtn.href = `mailto:${s.email}?subject=Fantastic%20Visuals%20Inquiry`;
         if (emailText) emailText.innerText = s.email;
         if (waBtn) waBtn.href = s.whatsapp;
         if (ig) ig.href = s.instagram;

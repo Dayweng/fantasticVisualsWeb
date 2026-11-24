@@ -173,22 +173,22 @@ const portfolioData = {
     ],
     "stills": [
         {
-            "title": "Main Stage Laser Array",
-            "category": "FESTIVAL CROWD",
-            "meta": "Sony A7R V • 24-70mm GM II",
-            "src": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80"
+            "title": "DIA Concert - Ciputra Fair 2026",
+            "category": "ARTIST",
+            "meta": "Sony A6700 · 70 F4",
+            "src": "https://drive.google.com/thumbnail?id=1lvnkJSPyuqmk6LXJjgQjZuRALRR_Posx&sz=w1600"
         },
         {
-            "title": "Backstage Session",
-            "category": "PORTRAIT",
-            "meta": "Leica Q3 • 28mm Summilux",
-            "src": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
+            "title": "DIA Concert - Ciputra Fair 2026",
+            "category": "ARTIST",
+            "meta": "",
+            "src": "https://drive.google.com/thumbnail?id=18U8lkYCvnfr71I0V108RmOZ7WnRYdg11&sz=w1600"
         },
         {
-            "title": "Keynote Key Visuals",
-            "category": "CORPORATE",
-            "meta": "Canon R5 • 70-200mm f/2.8",
-            "src": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80"
+            "title": "Worship Nite TourGather",
+            "category": "MINISTRY",
+            "meta": "Sony A6700 · 50 F1.4",
+            "src": "https://drive.google.com/thumbnail?id=1zNJnb8m2sRHDLkMDW_PpeOrpjYtcv-PM&sz=w1600"
         }
     ]
 };

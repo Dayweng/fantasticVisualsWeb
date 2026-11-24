@@ -14,6 +14,55 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 2. Clean Link Router (Keeps neat URLs like /work, /stills, /services, /contact)
+    function scrollToSection(sectionId, updateUrl = true) {
+        if (sectionId === 'top' || sectionId === 'home') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (updateUrl && window.history.pushState) {
+                window.history.pushState(null, '', '/');
+            }
+            return;
+        }
+
+        const target = document.getElementById(sectionId);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+            if (updateUrl && window.history.pushState) {
+                window.history.pushState(null, '', `/${sectionId}`);
+            }
+        }
+    }
+
+    // Attach click listeners to all neat section links
+    document.querySelectorAll('[data-section]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const section = link.getAttribute('data-section');
+            scrollToSection(section, true);
+        });
+    });
+
+    // Check on page load if user visited /work, /stills, /services, /contact directly
+    const validSections = ['work', 'stills', 'services', 'capabilities', 'contact'];
+    const rawPath = window.location.pathname.replace(/^\/|\/$/g, '');
+    if (validSections.includes(rawPath)) {
+        const targetId = rawPath === 'capabilities' ? 'services' : rawPath;
+        setTimeout(() => {
+            scrollToSection(targetId, false);
+        }, 300);
+    }
+
+    // Handle browser back / forward navigation
+    window.addEventListener('popstate', () => {
+        const path = window.location.pathname.replace(/^\/|\/$/g, '');
+        if (validSections.includes(path)) {
+            const targetId = path === 'capabilities' ? 'services' : path;
+            scrollToSection(targetId, false);
+        } else if (!path) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+
     // 3. Mobile Hamburger Menu Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -52,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const emailText = document.getElementById('footerEmailText');
         const waBtn = document.getElementById('footerWhatsappBtn');
         const ig = document.getElementById('footerInstagram');
+        const mobileIg = document.getElementById('mobileInstagram');
         const yt = document.getElementById('footerYoutube');
         const vimeo = document.getElementById('footerVimeo');
         const drivePortal = document.getElementById('footerDrivePortal');
@@ -60,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (emailText) emailText.innerText = s.email;
         if (waBtn) waBtn.href = s.whatsapp;
         if (ig) ig.href = s.instagram;
+        if (mobileIg) mobileIg.href = s.instagram;
         if (yt) yt.href = s.youtube;
         if (vimeo) vimeo.href = s.vimeo;
         if (drivePortal) drivePortal.href = s.masterDrivePortal;

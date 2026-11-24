@@ -1,5 +1,12 @@
 {
   "cleanUrls": true,
+  "rewrites": [
+    { "source": "/work", "destination": "/index.html" },
+    { "source": "/stills", "destination": "/index.html" },
+    { "source": "/services", "destination": "/index.html" },
+    { "source": "/capabilities", "destination": "/index.html" },
+    { "source": "/contact", "destination": "/index.html" }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",

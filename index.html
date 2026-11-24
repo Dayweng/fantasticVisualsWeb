@@ -55,22 +55,22 @@
     <header class="fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 md:px-12 py-4 sm:py-5 backdrop-blur-xl bg-obsidian/80 border-b border-white/[0.06] transition-all duration-500">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <!-- Brand Mark -->
-            <a href="#" class="group flex items-center space-x-2.5 sm:space-x-3">
+            <a href="/" data-section="top" class="group flex items-center space-x-2.5 sm:space-x-3">
                 <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-full transition-transform duration-300 group-hover:scale-150"></div>
                 <span class="font-syne font-bold text-base sm:text-lg md:text-xl tracking-wider text-white">FANTASTIC <span class="text-zinc-500 font-normal">VISUALS</span></span>
             </a>
 
             <!-- Desktop Center Navigation Links -->
             <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 font-mono text-xs uppercase tracking-wider text-zinc-400">
-                <a href="#work" class="hover:text-white transition-colors duration-200">Selected Work</a>
-                <a href="#stills" class="hover:text-white transition-colors duration-200">Event Stills</a>
-                <a href="#services" class="hover:text-white transition-colors duration-200">Capabilities</a>
-                <a href="#contact" class="hover:text-white transition-colors duration-200">Contact</a>
+                <a href="/work" data-section="work" class="hover:text-white transition-colors duration-200">Selected Work</a>
+                <a href="/stills" data-section="stills" class="hover:text-white transition-colors duration-200">Event Stills</a>
+                <a href="/services" data-section="services" class="hover:text-white transition-colors duration-200">Capabilities</a>
+                <a href="/contact" data-section="contact" class="hover:text-white transition-colors duration-200">Contact</a>
             </nav>
 
             <!-- Actions (CTA + Mobile Hamburger) -->
             <div class="flex items-center space-x-3 sm:space-x-4">
-                <a href="#contact" class="hidden sm:inline-flex px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white text-black font-syne font-bold text-xs uppercase tracking-wider hover:bg-zinc-200 hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+                <a href="/contact" data-section="contact" class="hidden sm:inline-flex px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white text-black font-syne font-bold text-xs uppercase tracking-wider hover:bg-zinc-200 hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)]">
                     Inquire
                 </a>
 
@@ -87,22 +87,22 @@
         <div class="space-y-6 pt-6">
             <span class="text-[10px] font-mono uppercase tracking-widest text-zinc-500">[ MENU ]</span>
             <nav class="flex flex-col space-y-5 font-syne font-extrabold text-2xl sm:text-3xl text-white">
-                <a href="#work" class="mobile-nav-link hover:text-cinema transition-colors">01 Selected Work</a>
-                <a href="#stills" class="mobile-nav-link hover:text-cinema transition-colors">02 Event Stills</a>
-                <a href="#services" class="mobile-nav-link hover:text-cinema transition-colors">03 Capabilities</a>
-                <a href="#contact" class="mobile-nav-link hover:text-cinema transition-colors">04 Contact</a>
+                <a href="/work" data-section="work" class="mobile-nav-link hover:text-cinema transition-colors">01 Selected Work</a>
+                <a href="/stills" data-section="stills" class="mobile-nav-link hover:text-cinema transition-colors">02 Event Stills</a>
+                <a href="/services" data-section="services" class="mobile-nav-link hover:text-cinema transition-colors">03 Capabilities</a>
+                <a href="/contact" data-section="contact" class="mobile-nav-link hover:text-cinema transition-colors">04 Contact</a>
             </nav>
         </div>
 
         <div class="space-y-5 pt-6 border-t border-white/10">
-            <a href="#contact" class="mobile-nav-link w-full py-3.5 rounded-full bg-white text-black font-syne font-bold text-xs uppercase tracking-wider text-center flex items-center justify-center space-x-2">
+            <a href="/contact" data-section="contact" class="mobile-nav-link w-full py-3.5 rounded-full bg-white text-black font-syne font-bold text-xs uppercase tracking-wider text-center flex items-center justify-center space-x-2">
                 <span>Book Shoot / Inquire</span>
                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
             <div class="flex justify-between items-center text-xs font-mono text-zinc-500 pt-2">
-                <span>JAKARTA & GLOBAL</span>
+                <span>SURABAYA, INDONESIA</span>
                 <div class="flex space-x-4">
-                    <a href="#" class="hover:text-white">INSTAGRAM</a>
+                    <a id="mobileInstagram" href="#" target="_blank" class="hover:text-white">INSTAGRAM</a>
                 </div>
             </div>
         </div>
@@ -170,7 +170,7 @@
             </div>
             <div>
                 <span class="text-zinc-600 block mb-0.5 sm:mb-1">04 / LOCATION</span>
-                <span class="text-white font-medium">Jakarta & Worldwide</span>
+                <span class="text-white font-medium">Surabaya, Indonesia</span>
             </div>
         </div>
     </section>

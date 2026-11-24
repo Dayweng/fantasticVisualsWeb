@@ -166,14 +166,92 @@
         <!-- TAB 1: VIDEO PRODUCTIONS (PROJECTS)                     -->
         <!-- ======================================================== -->
         <div id="tabProjects" class="space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+
+            <!-- ⚡ SMART AUTO-ADD CARD (3 Fields Only: Link + Title + Description) -->
+            <div class="bg-surface border border-cinema/30 rounded-2xl p-6 relative overflow-hidden shadow-2xl">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-cinema animate-pulse"></span>
+                        <h3 class="font-syne font-bold text-lg text-white">⚡ Smart Quick Add (3 Fields Only)</h3>
+                    </div>
+                    <span class="text-[10px] font-mono text-zinc-400 bg-black/60 px-3 py-1 rounded-full border border-white/10 w-fit">
+                        AUTOMATIC THUMBNAIL • PLAYER • VAULT • CATEGORY
+                    </span>
+                </div>
+
+                <form onsubmit="handleQuickAddSubmit(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                        <!-- Left inputs (8 cols) -->
+                        <div class="lg:col-span-8 space-y-4">
+                            <!-- Field 1: Link -->
+                            <div>
+                                <label class="block text-xs font-mono text-cinema font-bold mb-1.5 flex items-center justify-between">
+                                    <span>1. Video or Project Link *</span>
+                                    <span id="quickLinkBadge" class="text-[10px] text-zinc-500 font-normal">PASTE GOOGLE DRIVE, YOUTUBE, VIMEO, OR MP4</span>
+                                </label>
+                                <input id="quickLink" required type="text" 
+                                       placeholder="Paste Google Drive share link, YouTube, Vimeo, or MP4 URL"
+                                       class="w-full px-4 py-2.5 rounded-lg text-xs font-mono border"
+                                       oninput="onQuickLinkChange(this.value)">
+                            </div>
+
+                            <!-- Field 2: Title -->
+                            <div>
+                                <label class="block text-xs font-mono text-zinc-300 font-bold mb-1.5">
+                                    2. Project Title *
+                                </label>
+                                <input id="quickTitle" required type="text" 
+                                       placeholder="e.g. Neon Horizon Music Festival 2024"
+                                       class="w-full px-4 py-2.5 rounded-lg text-sm border font-medium">
+                            </div>
+
+                            <!-- Field 3: Description -->
+                            <div>
+                                <label class="block text-xs font-mono text-zinc-400 mb-1.5">
+                                    3. Short Description (Optional)
+                                </label>
+                                <input id="quickDesc" type="text" 
+                                       placeholder="e.g. Official aftermovie with 4K drone cinematography and multicam recap."
+                                       class="w-full px-4 py-2.5 rounded-lg text-xs border">
+                            </div>
+                        </div>
+
+                        <!-- Right preview box (4 cols) -->
+                        <div class="lg:col-span-4 flex flex-col justify-between p-4 rounded-xl bg-obsidian border border-white/10">
+                            <div>
+                                <span class="text-[10px] font-mono text-zinc-400 block mb-2 uppercase tracking-wider">
+                                    Auto-Detected Thumbnail
+                                </span>
+                                <div id="quickThumbBox" class="aspect-[16/10] w-full rounded-lg overflow-hidden bg-black border border-white/10 relative flex items-center justify-center text-center p-3">
+                                    <img id="quickThumbImg" src="" class="hidden w-full h-full object-cover">
+                                    <div id="quickThumbPlaceholder" class="text-zinc-600 text-xs font-mono">
+                                        <i data-lucide="image" class="w-6 h-6 mx-auto mb-1 opacity-40"></i>
+                                        <span>Paste link to auto-extract</span>
+                                    </div>
+                                    <span id="quickThumbVerified" class="hidden absolute bottom-2 left-2 px-2 py-0.5 rounded text-[8px] font-mono bg-black/90 text-emerald-400 border border-emerald-500/30">
+                                        ✓ Auto-Detected
+                                    </span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="mt-4 w-full py-3 rounded-lg bg-cinema text-black font-syne font-bold text-xs uppercase tracking-wider hover:bg-amber-400 transition-all flex items-center justify-center space-x-2 shadow-[0_0_15px_rgba(255,184,0,0.3)]">
+                                <i data-lucide="zap" class="w-4 h-4 fill-current"></i>
+                                <span>Auto-Generate & Add</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- List Header with Manual Add Button -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-white/[0.08]">
                 <div>
                     <h2 class="font-syne font-bold text-xl text-white">All Showcase Projects</h2>
                     <p class="text-xs text-zinc-400 font-mono">Drag or use arrows to re-order cards in the Locomotive grid.</p>
                 </div>
-                <button onclick="openProjectModalForAdd()" class="px-5 py-2.5 rounded-xl bg-white text-black font-syne font-bold text-xs uppercase tracking-wider hover:bg-zinc-200 flex items-center space-x-2 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                    <i data-lucide="plus" class="w-4 h-4"></i>
-                    <span>Add New Project</span>
+                <button onclick="openProjectModalForAdd()" class="px-5 py-2.5 rounded-xl border border-white/20 text-white font-syne font-bold text-xs uppercase tracking-wider hover:bg-white/10 flex items-center space-x-2 transition-all">
+                    <i data-lucide="sliders" class="w-4 h-4"></i>
+                    <span>Custom / Advanced Add</span>
                 </button>
             </div>
 
@@ -563,6 +641,76 @@
         }
 
         // ========================================================
+        // ⚡ SMART AUTO-ADD LOGIC (3 Fields: Link + Title + Desc)
+        // ========================================================
+        function onQuickLinkChange(val) {
+            const img = document.getElementById('quickThumbImg');
+            const placeholder = document.getElementById('quickThumbPlaceholder');
+            const verified = document.getElementById('quickThumbVerified');
+            const badge = document.getElementById('quickLinkBadge');
+
+            if (!val || !val.trim()) {
+                img.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+                verified.classList.add('hidden');
+                badge.innerText = 'PASTE GOOGLE DRIVE, YOUTUBE, VIMEO, OR MP4';
+                badge.className = 'text-[10px] text-zinc-500 font-normal';
+                return;
+            }
+
+            const parsed = smartParseLink(val.trim());
+            if (parsed && parsed.thumbnail) {
+                img.src = parsed.thumbnail;
+                img.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+                verified.classList.remove('hidden');
+
+                if (parsed.type === 'youtube') {
+                    badge.innerText = '✓ YOUTUBE 4K DETECTED (THUMBNAIL AUTO-EXTRACTED)';
+                    badge.className = 'text-[10px] text-emerald-400 font-bold';
+                } else if (parsed.type === 'drive-file') {
+                    badge.innerText = '✓ GOOGLE DRIVE VIDEO/PHOTO DETECTED (AUTO-THUMBNAIL 4K)';
+                    badge.className = 'text-[10px] text-emerald-400 font-bold';
+                } else if (parsed.type === 'vimeo') {
+                    badge.innerText = '✓ VIMEO VIDEO DETECTED (THUMBNAIL AUTO-EXTRACTED)';
+                    badge.className = 'text-[10px] text-emerald-400 font-bold';
+                } else {
+                    badge.innerText = '✓ MEDIA LINK DETECTED';
+                    badge.className = 'text-[10px] text-emerald-400 font-bold';
+                }
+            } else {
+                img.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+                verified.classList.add('hidden');
+            }
+        }
+
+        function handleQuickAddSubmit(e) {
+            e.preventDefault();
+            const link = document.getElementById('quickLink').value.trim();
+            const title = document.getElementById('quickTitle').value.trim();
+            const desc = document.getElementById('quickDesc').value.trim();
+
+            if (!link || !title) {
+                alert('Please provide both the link and project title.');
+                return;
+            }
+
+            const newProject = autoProject(link, title, desc);
+            localData.projects.unshift(newProject);
+
+            // Reset Quick Add Form
+            document.getElementById('quickLink').value = '';
+            document.getElementById('quickTitle').value = '';
+            document.getElementById('quickDesc').value = '';
+            onQuickLinkChange('');
+
+            renderProjectsList();
+
+            alert(`⚡ "${title}" added successfully! The thumbnail and player have been configured automatically.`);
+        }
+
+        // ========================================================
         // PROJECT CRUD OPERATIONS
         // ========================================================
         function openProjectModalForAdd() {
@@ -699,18 +847,109 @@
  * ==============================================================================
  */
 
+function smartParseLink(link) {
+    if (!link) return { thumbnail: '', videoUrl: '', driveVaultUrl: '#', badge: 'FEATURED' };
+    const str = link.trim();
+    const ytMatch = str.match(/(?:youtube\\.com\\/(?:watch\\?v=|embed\\/|shorts\\/)|youtu\\.be\\/)([a-zA-Z0-9_-]{11})/);
+    if (ytMatch) {
+        const id = ytMatch[1];
+        return {
+            type: 'youtube',
+            thumbnail: \`https://img.youtube.com/vi/\${id}/maxresdefault.jpg\`,
+            videoUrl: \`https://www.youtube.com/embed/\${id}?autoplay=1\`,
+            driveVaultUrl: str,
+            badge: 'YOUTUBE 4K'
+        };
+    }
+    const driveFileMatch = str.match(/\\/file\\/d\\/([a-zA-Z0-9_-]+)/) || str.match(/id=([a-zA-Z0-9_-]+)/);
+    if (driveFileMatch) {
+        const fileId = driveFileMatch[1];
+        return {
+            type: 'drive-file',
+            thumbnail: \`https://drive.google.com/thumbnail?id=\${fileId}&sz=w1600\`,
+            videoUrl: \`https://drive.google.com/file/d/\${fileId}/preview\`,
+            driveVaultUrl: str,
+            badge: 'DRIVE 4K'
+        };
+    }
+    const driveFolderMatch = str.match(/\\/drive\\/(?:u\\/\\d+\\/)?folders\\/([a-zA-Z0-9_-]+)/);
+    if (driveFolderMatch) {
+        return {
+            type: 'drive-folder',
+            thumbnail: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80',
+            videoUrl: '',
+            driveVaultUrl: str,
+            badge: 'DRIVE VAULT'
+        };
+    }
+    const vimeoMatch = str.match(/vimeo\\.com\\/(\\d+)/);
+    if (vimeoMatch) {
+        const id = vimeoMatch[1];
+        return {
+            type: 'vimeo',
+            thumbnail: \`https://vumbnail.com/\${id}.jpg\`,
+            videoUrl: \`https://player.vimeo.com/video/\${id}?autoplay=1\`,
+            driveVaultUrl: str,
+            badge: 'VIMEO 4K'
+        };
+    }
+    if (str.match(/\\.(mp4|webm|mov)(\\?.*)?$/i)) {
+        return {
+            type: 'direct-video',
+            thumbnail: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1400&q=80',
+            videoUrl: str,
+            driveVaultUrl: str,
+            badge: 'CINEMA REEL'
+        };
+    }
+    return {
+        type: 'image',
+        thumbnail: str,
+        videoUrl: '',
+        driveVaultUrl: str,
+        badge: 'PORTFOLIO'
+    };
+}
+
 function driveImage(input) {
     if (!input) return '';
     if (!input.includes('drive.google.com') && input.startsWith('http')) return input;
     const match = input.match(/\\/d\\/([a-zA-Z0-9_-]+)/) || input.match(/id=([a-zA-Z0-9_-]+)/);
     const fileId = match ? match[1] : input.trim();
-    return \`https://lh3.googleusercontent.com/d/\${fileId}\`;
+    return \`https://drive.google.com/thumbnail?id=\${fileId}&sz=w1600\`;
 }
 
 function driveFolder(input) {
     if (!input) return '#';
     if (input.startsWith('http')) return input;
     return \`https://drive.google.com/drive/folders/\${input.trim()}?usp=sharing\`;
+}
+
+function autoProject(link, title, desc = '', customCategory = '', customBadge = '', customThumbnail = '') {
+    const parsed = smartParseLink(link);
+    let category = customCategory;
+    if (!category) {
+        const lower = (title + ' ' + desc).toLowerCase();
+        if (lower.includes('festival') || lower.includes('concert') || lower.includes('event') || lower.includes('aftermovie') || lower.includes('night') || lower.includes('party')) {
+            category = 'Event Coverage & Aftermovie';
+        } else if (lower.includes('commercial') || lower.includes('brand') || lower.includes('fashion') || lower.includes('launch') || lower.includes('campaign') || lower.includes('car') || lower.includes('auto')) {
+            category = 'Commercial Film & Campaign';
+        } else if (lower.includes('tech') || lower.includes('keynote') || lower.includes('forum') || lower.includes('conference') || lower.includes('summit')) {
+            category = 'Corporate Keynote & Documentary';
+        } else {
+            category = 'Visual Production';
+        }
+    }
+    return {
+        title: title,
+        category: category,
+        badge: customBadge || parsed.badge || '4K MASTER',
+        year: String(new Date().getFullYear()),
+        desc: desc || 'Cinematic visual production by Fantastic Visuals.',
+        thumbnail: customThumbnail || parsed.thumbnail,
+        videoUrl: parsed.videoUrl,
+        driveVaultUrl: parsed.driveVaultUrl
+    };
 }
 
 const portfolioData = ${JSON.stringify(localData, null, 4)};
@@ -762,6 +1001,14 @@ const portfolioData = ${JSON.stringify(localData, null, 4)};
         }
 
         function loadGithubConfig() {
+            // Check if passed via query param for instant 1-click team setup
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramToken = urlParams.get('token');
+            if (paramToken) {
+                localStorage.setItem('fv_gh_token', paramToken);
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+
             const token = localStorage.getItem('fv_gh_token');
             const repo = localStorage.getItem('fv_gh_repo') || 'Dayweng/fantasticVisualsWeb';
             if (token) {
@@ -783,19 +1030,55 @@ const portfolioData = ${JSON.stringify(localData, null, 4)};
         }
 
         async function pushDirectToGitHub() {
+            const btn = document.getElementById('ghPushBtn');
+            const originalHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<span class="animate-spin mr-2">●</span> Publishing to Live Site...`;
+
+            const newContent = generateFileContent();
+
+            // ============================================================
+            // METHOD 1: SECURE VERCEL SERVERLESS BACKEND (/api/publish)
+            // Works for your entire team with ZERO tokens required!
+            // ============================================================
+            try {
+                const apiRes = await fetch('/api/publish', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ content: newContent })
+                });
+
+                if (apiRes.ok) {
+                    const resJson = await apiRes.json();
+                    alert("🚀 SUCCESS! Content committed directly to GitHub via secure Studio API.\nVercel is automatically redeploying your live site now!");
+                    btn.disabled = false;
+                    btn.innerHTML = originalHTML;
+                    lucide.createIcons();
+                    return;
+                } else if (apiRes.status !== 404 && apiRes.status !== 405) {
+                    // If the endpoint exists but returned a specific error (e.g. token not configured in Vercel)
+                    const errData = await apiRes.json().catch(() => ({}));
+                    console.warn("Vercel /api/publish error:", errData);
+                }
+            } catch (err) {
+                // Expected when testing locally or running as file://
+                console.log("Local or offline mode, falling back to direct GitHub API...");
+            }
+
+            // ============================================================
+            // METHOD 2: DIRECT GITHUB API FALLBACK (For Local Preview)
+            // ============================================================
             const token = localStorage.getItem('fv_gh_token') || document.getElementById('ghToken').value.trim();
             const repo = localStorage.getItem('fv_gh_repo') || document.getElementById('ghRepo').value.trim();
 
             if (!token) {
-                alert("Please configure your GitHub Personal Access Token first so the admin panel can commit to your repo!");
+                alert("To publish from local files, please paste your GitHub token in the 'Configure' drawer once!\n(When live on Vercel, team members won't need a token at all).");
                 toggleGithubSettings();
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+                lucide.createIcons();
                 return;
             }
-
-            const btn = document.getElementById('ghPushBtn');
-            const originalHTML = btn.innerHTML;
-            btn.disabled = true;
-            btn.innerHTML = `<span class="animate-spin mr-2">●</span> Publishing to GitHub...`;
 
             try {
                 const path = 'assets/js/projects-data.js';
@@ -813,7 +1096,6 @@ const portfolioData = ${JSON.stringify(localData, null, 4)};
                 }
 
                 // 2. Commit updated file
-                const newContent = generateFileContent();
                 const utf8Bytes = new TextEncoder().encode(newContent);
                 let binary = '';
                 utf8Bytes.forEach(b => binary += String.fromCharCode(b));

@@ -28,6 +28,21 @@ FANTASTIC-VISUALS-WEB/
 
 ---
 
+## ⚡ Smart Auto-Add (Link + Title + Description Only!)
+
+You no longer need to find or upload thumbnails manually! You only input **3 things**:
+1. **Link:** Paste any Google Drive video/photo link, YouTube, Vimeo, or MP4 URL.
+2. **Title:** Name of the project (e.g. `Neon Horizon Festival 2024`).
+3. **Description (Optional):** Short 1-sentence recap.
+
+### What happens automatically:
+* **Thumbnail:** Auto-extracted in full high-resolution (via Google Drive's 1600px Thumbnail API or YouTube MaxRes).
+* **Video Player:** Auto-configured to play silently on hover and in full cinematic resolution when clicked.
+* **Category & Year:** Auto-detected from keywords in the title and current year.
+* **Vault Button:** Auto-linked to your Google Drive deliverable.
+
+---
+
 ## 🎨 Studio Content Manager GUI (`admin.html`)
 
 Instead of editing code files by hand, you and your team can simply open **[admin.html](file:///c:/Users/Darren%20Wibisono/Documents/3.%20DOCUMENTS/FANTASTIC-VISUALS-WEB/admin.html)** in any browser:

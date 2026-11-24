@@ -193,12 +193,39 @@ document.addEventListener('DOMContentLoaded', () => {
 // MODAL & LIGHTBOX CONTROLLERS
 // ========================================================
 
+function setModalPlayer(videoUrl) {
+    const video = document.getElementById('modalVideoPlayer');
+    const iframe = document.getElementById('modalIframePlayer');
+    if (!video || !iframe) return;
+
+    const url = videoUrl || '';
+    const isEmbed = url.includes('youtube.com') || url.includes('youtu.be') || url.includes('vimeo.com') || url.includes('drive.google.com');
+
+    if (isEmbed) {
+        video.classList.add('hidden');
+        video.pause();
+        iframe.classList.remove('hidden');
+        iframe.src = url;
+    } else if (url) {
+        iframe.classList.add('hidden');
+        iframe.src = '';
+        video.classList.remove('hidden');
+        video.querySelector('source').src = url;
+        video.load();
+        video.play().catch(() => {});
+    } else {
+        iframe.classList.add('hidden');
+        iframe.src = '';
+        video.classList.add('hidden');
+        video.pause();
+    }
+}
+
 function openProjectModal(index) {
     const data = portfolioData.projects[index];
     if (!data) return;
 
     const modal = document.getElementById('projectModal');
-    const video = document.getElementById('modalVideoPlayer');
 
     document.getElementById('modalTitle').innerText = data.title;
     document.getElementById('modalCategory').innerText = data.category;
@@ -206,9 +233,7 @@ function openProjectModal(index) {
     document.getElementById('modalDesc').innerText = data.desc;
     document.getElementById('modalDriveBtn').href = data.driveVaultUrl;
 
-    video.querySelector('source').src = data.videoUrl;
-    video.load();
-    video.play().catch(() => {});
+    setModalPlayer(data.videoUrl);
 
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
@@ -219,7 +244,11 @@ function openProjectModal(index) {
 function closeProjectModal() {
     const modal = document.getElementById('projectModal');
     const video = document.getElementById('modalVideoPlayer');
-    video.pause();
+    const iframe = document.getElementById('modalIframePlayer');
+
+    if (video) video.pause();
+    if (iframe) iframe.src = '';
+
     modal.classList.add('hidden');
     document.body.style.overflow = '';
 }
@@ -227,7 +256,6 @@ function closeProjectModal() {
 function openHeroReel() {
     const data = portfolioData.heroReel;
     const modal = document.getElementById('projectModal');
-    const video = document.getElementById('modalVideoPlayer');
 
     document.getElementById('modalTitle').innerText = data.title;
     document.getElementById('modalCategory').innerText = "FLAGSHIP SHOWREEL";
@@ -235,9 +263,7 @@ function openHeroReel() {
     document.getElementById('modalDesc').innerText = data.desc;
     document.getElementById('modalDriveBtn').href = data.driveVaultUrl;
 
-    video.querySelector('source').src = data.videoUrl;
-    video.load();
-    video.play().catch(() => {});
+    setModalPlayer(data.videoUrl);
 
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
